@@ -51,11 +51,11 @@ const Dashboard = () => {
             <Table striped bordered hover responsive>
               <thead>
                 <tr>
-                  <th>vehicle ID</th>
-                  <th>brand</th>
-                  <th>model</th>
-                  <th>note</th>
-                  <th>others</th>
+                  <th>Vehicle ID</th>
+                  <th>Brand</th>
+                  <th>Model</th>
+                  <th>Note</th>
+                  <th>Others</th>
                   <th>Action</th>
                 </tr>
               </thead>
