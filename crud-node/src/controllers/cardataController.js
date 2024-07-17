@@ -51,6 +51,21 @@ class CardataController {
       res.status(500).json({ error: error.message });
     }
   }
+
+  async deleteCardata(req, res) {
+    const cardataId = req.params.id;
+    try {
+      const deletedCardata = await cardataService.deleteCardata(cardataId);
+      if (!deletedCardata)
+        return res.status(404).json({ error: "Data not found" });
+      res.json({
+        message: "Data deleted successfully",
+        cardata: deletedCardata,
+      });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = new CardataController();

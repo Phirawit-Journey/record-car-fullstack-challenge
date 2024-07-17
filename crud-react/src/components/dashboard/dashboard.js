@@ -7,21 +7,39 @@ const Dashboard = () => {
   const [cardatas, setCardatas] = useState([]);
   const navigate = useNavigate();
 
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/car");
+      const data = await response.json();
+      setCardatas(data);
+    } catch (error) {
+      console.log("error while fetching cardatas:", error.message);
+    }
+  };
+
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch("http://localhost:8000/api/car");
-        const data = await response.json();
-        setCardatas(data);
-      } catch (error) {
-        console.log("error while fetching cardatas:", error.message);
-      }
-    };
     fetchUsers();
   }, []);
 
   const handleUpdate = (cardataId) => {
     navigate(`/car/${cardataId}`);
+  };
+
+  const handleDelete = async (cardataId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/car/${cardataId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      console.log(response);
+      if (response.ok) {
+        fetchUsers();
+      }
+    } catch (error) {
+      console.error("Error while deleting car data:", error.message);
+    }
   };
 
   return (
@@ -56,12 +74,12 @@ const Dashboard = () => {
                       >
                         Update
                       </Button>{" "}
-                      {/* <Button
+                      <Button
                         variant="danger"
                         onClick={() => handleDelete(cardata._id)}
                       >
                         Delete
-                      </Button>{" "} */}
+                      </Button>{" "}
                     </td>
                   </tr>
                 ))}

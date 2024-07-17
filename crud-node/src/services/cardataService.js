@@ -19,6 +19,10 @@ class CardataService {
       new: true,
     });
   }
+
+  async deleteCardata(cardataId) {
+    return await Cardata.findByIdAndDelete(cardataId);
+  }
 }
 
 module.exports = new CardataService();

@@ -11,4 +11,6 @@ router.get("/:id", cardataController.getCardataById);
 
 router.patch("/:id", cardataController.updateCardata);
 
+router.delete("/:id", cardataController.deleteCardata);
+
 module.exports = router;
