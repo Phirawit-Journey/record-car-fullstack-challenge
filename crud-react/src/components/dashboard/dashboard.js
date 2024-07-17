@@ -47,7 +47,7 @@ const Dashboard = () => {
       <Container className="mt-5">
         <Row>
           <Col>
-            <h1 className="text-center">Dashboard Component</h1>
+            <h1 className="text-center">Vehicle Dashboard</h1>
             <Table striped bordered hover responsive>
               <thead>
                 <tr>
@@ -69,13 +69,13 @@ const Dashboard = () => {
                     <td>{cardata.others}</td>
                     <td>
                       <Button
-                        variant="dark"
+                        variant="primary"
                         onClick={() => handleUpdate(cardata._id)}
                       >
-                        Update
+                        Edit
                       </Button>{" "}
                       <Button
-                        variant="danger"
+                        variant="outline-danger"
                         onClick={() => handleDelete(cardata._id)}
                       >
                         Delete
