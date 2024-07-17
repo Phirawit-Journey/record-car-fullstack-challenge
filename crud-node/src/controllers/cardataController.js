@@ -16,6 +16,41 @@ class CardataController {
       res.status(500).json({ error: error.message });
     }
   }
+
+  async getAllCardatas(req, res) {
+    try {
+      const cardatas = await cardataService.getAllCardatas();
+      res.json(cardatas);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+  async getCardataById(req, res) {
+    const cardataId = req.params.id;
+    try {
+      const cardata = await cardataService.getCardataById(cardataId);
+      if (!cardata) return res.status(404).json({ error: "Data not found" });
+      res.json(cardata);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+  async updateCardata(req, res) {
+    const cardataId = req.params.id;
+    const updatedData = req.body;
+    try {
+      const updatedCar = await cardataService.updateCardata(
+        cardataId,
+        updatedData
+      );
+      if (!updatedCar) return res.status(404).json({ error: "Data not found" });
+      res.json(updatedCar);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = new CardataController();
